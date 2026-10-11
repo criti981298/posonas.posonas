@@ -1,0 +1,108 @@
+
+---
+const enlaces = [
+  { nombre: "Inicio", url: "/" },
+  { nombre: "Comunidad", url: "/#comunidad" },
+  { nombre: "Eventos", url: "/#eventos" },
+  { nombre: "Recursos", url: "/#recursos" }
+];
+---
+
+<header class="navbar">
+  <nav class="nav-contenedor" aria-label="Navegación principal">
+
+    <a href="/" class="logo">
+      <span class="logo-icono" aria-hidden="true">♥</span>
+      <span>posonas<span class="punto">.</span></span>
+    </a>
+
+    <div class="nav-enlaces">
+      {enlaces.map((enlace) => (
+        <a href={enlace.url}>
+          {enlace.nombre}
+        </a>
+      ))}
+    </div>
+
+  </nav>
+</header>
+
+<style>
+  .navbar {
+    width: 100%;
+    background: #101019;
+    border-bottom: 1px solid #ffffff15;
+  }
+
+  .nav-contenedor {
+    max-width: 1200px;
+    min-height: 80px;
+    margin: auto;
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: white;
+    font-size: 25px;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .logo-icono {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: #9d4edd;
+    color: white;
+    font-size: 23px;
+  }
+
+  .punto {
+    color: #f472b6;
+  }
+
+  .nav-enlaces {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .nav-enlaces a {
+    color: #c4c4d4;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+  }
+
+  .nav-enlaces a:hover {
+    color: #f472b6;
+  }
+
+  @media (max-width: 768px) {
+    .nav-contenedor {
+      flex-direction: column;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .nav-enlaces {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .nav-enlaces a {
+      font-size: 13px;
+    }
+  }
+</style>

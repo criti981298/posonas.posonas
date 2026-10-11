@@ -1,0 +1,169 @@
+
+---
+const anioActual = new Date().getFullYear();
+
+const enlaces = [
+  { nombre: "Inicio", url: "/" },
+  { nombre: "Comunidad", url: "/#comunidad" },
+  { nombre: "Eventos", url: "/#eventos" },
+  { nombre: "Recursos", url: "/#recursos" }
+];
+---
+
+<footer class="footer">
+  <div class="footer-contenedor">
+
+    <div class="footer-principal">
+
+      <div class="footer-marca">
+        <a href="/" class="footer-logo">
+          <span class="logo-icono" aria-hidden="true">♥</span>
+          <span>posonas<span class="punto">.</span></span>
+        </a>
+
+        <p>
+          Un espacio para conectar, expresarnos
+          y celebrar nuestra diversidad.
+        </p>
+      </div>
+
+      <nav class="footer-navegacion" aria-label="Navegación del pie de página">
+        <h3>Explora</h3>
+
+        {enlaces.map((enlace) => (
+          <a href={enlace.url}>
+            {enlace.nombre}
+          </a>
+        ))}
+      </nav>
+
+    </div>
+
+    <div class="footer-inferior">
+      <p>
+        © {anioActual} Posonas.
+        Todos los derechos reservados.
+      </p>
+
+      <span class="footer-corazon" aria-hidden="true">♥</span>
+    </div>
+
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: #0b0b13;
+    border-top: 1px solid #ffffff15;
+    padding: 70px 30px 25px;
+  }
+
+  .footer-contenedor {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .footer-principal {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+    padding-bottom: 60px;
+  }
+
+  .footer-marca {
+    max-width: 360px;
+  }
+
+  .footer-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    color: white;
+    font-size: 26px;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .logo-icono {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: #9d4edd;
+    color: white;
+    font-size: 23px;
+  }
+
+  .punto {
+    color: #f472b6;
+  }
+
+  .footer-marca p {
+    margin-top: 20px;
+    color: #a1a1aa;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .footer-navegacion {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .footer-navegacion h3 {
+    margin: 0 0 8px;
+    color: white;
+    font-size: 16px;
+  }
+
+  .footer-navegacion a {
+    color: #a1a1aa;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+  }
+
+  .footer-navegacion a:hover {
+    color: #f472b6;
+  }
+
+  .footer-inferior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding-top: 25px;
+    border-top: 1px solid #ffffff15;
+  }
+
+  .footer-inferior p {
+    margin: 0;
+    color: #71717a;
+    font-size: 13px;
+  }
+
+  .footer-corazon {
+    color: #f472b6;
+    font-size: 22px;
+  }
+
+  @media (max-width: 768px) {
+    .footer {
+      padding: 50px 20px 25px;
+    }
+
+    .footer-principal {
+      flex-direction: column;
+      gap: 35px;
+      padding-bottom: 40px;
+    }
+
+    .footer-inferior {
+      flex-wrap: wrap;
+    }
+  }
+</style>

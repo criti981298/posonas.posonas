@@ -1,0 +1,123 @@
+
+---
+import MainLayout from "../layouts/MainLayout.astro";
+
+const nombreProyecto = "Posonas";
+const descripcion = "Un espacio para conectar, expresarnos y celebrar nuestra diversidad.";
+---
+
+<MainLayout
+  title="Posonas | Nuestra comunidad"
+  description={descripcion}
+>
+  <main>
+    <div class="contenedor">
+      <span class="text-green-400">COMUNIDAD LGBTQ+</span>
+
+      <h1>Bienvenid@s a <span>{nombreProyecto}</span></h1>
+
+      <p>{descripcion}</p>
+
+      <a href="#comunidad" class="boton">
+        Explorar comunidad
+      </a>
+    </div>
+  </main>
+
+  <section id="comunidad">
+    <h2>Un espacio para ser tú</h2>
+    <p>
+      Estamos construyendo algo especial.
+      Próximamente encontrarás eventos,
+      recursos y espacios de comunidad.
+    </p>
+  </section>
+</MainLayout>
+
+<style>
+  main {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    background:
+      radial-gradient(
+        circle at 80% 20%,
+        #6d28d955,
+        transparent 45%
+      ),
+      radial-gradient(
+        circle at 20% 80%,
+        #ec489955,
+        transparent 45%
+      ),
+      #101019;
+  }
+
+  .contenedor {
+    max-width: 850px;
+    text-align: center;
+  }
+
+  .etiqueta {
+    color: #f9a8d4;
+    letter-spacing: 4px;
+    font-size: 13px;
+    font-weight: bold;
+  }
+
+  h1 {
+    font-size: clamp(42px, 7vw, 85px);
+    line-height: 1.1;
+    margin: 25px 0;
+  }
+
+  h1 span {
+    background: linear-gradient(
+      90deg,
+      #f472b6,
+      #a78bfa,
+      #60a5fa
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  p {
+    font-size: 19px;
+    line-height: 1.7;
+    color: #c4c4d4;
+  }
+
+  .boton {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 16px 32px;
+    border-radius: 50px;
+    background: #ffffff;
+    color: #101019;
+    text-decoration: none;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+  }
+
+  .boton:hover {
+    transform: translateY(-5px);
+  }
+
+  section {
+    padding: 100px 25px;
+    text-align: center;
+  }
+
+  section h2 {
+    font-size: clamp(28px, 5vw, 45px);
+  }
+
+  section p {
+    max-width: 600px;
+    margin: auto;
+  }
+</style>

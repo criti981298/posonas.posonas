@@ -1,0 +1,25 @@
+
+@import "tailwindcss";
+
+/* Configuración global de Posonas */
+
+:root {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #ffffff;
+  background-color: #101019;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #101019;
+  color: #ffffff;
+}
