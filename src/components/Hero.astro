@@ -1,0 +1,519 @@
+
+---
+const titulo = "Donde ser tú";
+const tituloDestacado = "lo cambia todo.";
+
+const descripcion =
+  "Una comunidad para conectar, compartir experiencias y celebrar nuestra diversidad.";
+---
+
+<section class="hero">
+  <div class="hero-fondo" aria-hidden="true">
+    <div class="orb orb-uno"></div>
+    <div class="orb orb-dos"></div>
+    <div class="orb orb-tres"></div>
+  </div>
+
+  <div class="hero-contenedor">
+
+    <div class="hero-contenido">
+
+      <div class="hero-etiqueta">
+        <span class="etiqueta-punto"></span>
+        UN ESPACIO PARA SER TÚ
+        <span aria-hidden="true">✦</span>
+      </div>
+
+      <h1>
+        {titulo}
+        <span class="titulo-destacado">
+          {tituloDestacado}
+        </span>
+      </h1>
+
+      <p class="hero-descripcion">
+        {descripcion}
+      </p>
+
+      <div class="hero-botones">
+        <a href="#comunidad" class="boton-principal">
+          Explorar comunidad
+          <span aria-hidden="true">↗</span>
+        </a>
+
+        <a href="#eventos" class="boton-secundario">
+          Ver eventos
+        </a>
+      </div>
+
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="visual-tarjeta tarjeta-uno">
+        <span>EXPRESA</span>
+        <strong>Tu esencia.</strong>
+      </div>
+
+      <div class="visual-tarjeta tarjeta-dos">
+        <span>CONECTA</span>
+        <strong>Sin límites.</strong>
+      </div>
+
+      <div class="visual-tarjeta tarjeta-tres">
+        <span>CELEBRA</span>
+        <strong>Tu historia.</strong>
+      </div>
+    </div>
+
+  </div>
+
+  <a href="#comunidad" class="hero-scroll">
+    DESCUBRE MÁS
+    <span aria-hidden="true">↓</span>
+  </a>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    isolation: isolate;
+    background: var(--color-background);
+    padding: 100px 30px 85px;
+  }
+
+  .hero-fondo {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.28;
+  }
+
+  .orb-uno {
+    width: 400px;
+    height: 400px;
+    background: #9d4edd;
+    top: -150px;
+    right: -100px;
+  }
+
+  .orb-dos {
+    width: 350px;
+    height: 350px;
+    background: #f472b6;
+    bottom: -150px;
+    left: -100px;
+  }
+
+  .orb-tres {
+    width: 250px;
+    height: 250px;
+    background: #60a5fa;
+    top: 40%;
+    left: 45%;
+  }
+
+  .hero-contenedor {
+    width: 100%;
+    max-width: 1250px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    gap: 70px;
+  }
+
+  .hero-contenido {
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-etiqueta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 30px;
+    color: #f9a8d4;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+  }
+
+  .etiqueta-punto {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #f472b6;
+    box-shadow: 0 0 20px #f472b6;
+  }
+
+  h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(52px, 6vw, 96px);
+    font-weight: 800;
+    line-height: 1.02;
+    letter-spacing: -3px;
+    color: white;
+  }
+
+  .titulo-destacado {
+    display: block;
+    margin-top: 12px;
+    background: linear-gradient(
+      90deg,
+      #f472b6,
+      #c084fc,
+      #60a5fa
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  .hero-descripcion {
+    max-width: 530px;
+    margin-top: 30px;
+    color: #c4c4d4;
+    font-size: 18px;
+    line-height: 1.8;
+  }
+
+  .hero-botones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 40px;
+  }
+
+  .boton-principal,
+  .boton-secundario {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 16px 28px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    transition:
+      transform 0.3s ease,
+      background 0.3s ease;
+  }
+
+  .boton-principal {
+    background: #f472b6;
+    color: #101019;
+  }
+
+  .boton-principal:hover {
+    transform: translateY(-4px);
+    background: #f9a8d4;
+  }
+
+  .boton-secundario {
+    border: 1px solid #ffffff55;
+    color: white;
+  }
+
+  .boton-secundario:hover {
+    transform: translateY(-4px);
+    background: #ffffff15;
+  }
+
+  .hero-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    min-height: 440px;
+    perspective: 1000px;
+  }
+
+  .visual-tarjeta {
+    width: 33%;
+    height: 340px;
+    border-radius: 22px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    box-shadow: 0 25px 60px #00000040;
+    transition: transform 0.4s ease;
+  }
+
+  .visual-tarjeta:hover {
+    transform: translateY(-15px) rotate(0deg);
+  }
+
+  .visual-tarjeta span {
+    font-size: 10px;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+
+  .visual-tarjeta strong {
+    font-family: var(--font-heading);
+    font-size: clamp(16px, 2vw, 25px);
+    line-height: 1.1;
+  }
+
+  .tarjeta-uno {
+    background: linear-gradient(160deg, #f472b6, #9d4edd);
+    transform: rotate(-8deg) translateY(30px);
+  }
+
+  .tarjeta-dos {
+    background: linear-gradient(160deg, #c084fc, #4338ca);
+    transform: translateY(-25px);
+  }
+
+  .tarjeta-tres {
+    background: linear-gradient(160deg, #60a5fa, #a855f7);
+    transform: rotate(8deg) translateY(30px);
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #a1a1aa;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-decoration: none;
+  }
+
+  @media (max-width: 1000px) {
+    .hero-contenedor {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .hero-contenido {
+      text-align: center;
+    }
+
+    .hero-etiqueta,
+    .hero-botones {
+      justify-content: center;
+    }
+
+    .hero-descripcion {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-visual {
+      min-height: 300px;
+    }
+
+    .visual-tarjeta {
+      max-width: 180px;
+      height: 260px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .hero {
+      padding: 85px 20px 90px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 11vw, 64px);
+      letter-spacing: -2px;
+    }
+
+    .hero-descripcion {
+      font-size: 16px;
+    }
+
+    .hero-visual {
+      gap: 8px;
+      min-height: 220px;
+    }
+
+    .visual-tarjeta {
+      height: 190px;
+      padding: 12px;
+      border-radius: 14px;
+    }
+
+    .visual-tarjeta strong {
+      font-size: 15px;
+    }
+
+    .visual-tarjeta span {
+      font-size: 8px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .visual-tarjeta,
+    .boton-principal,
+    .boton-secundario {
+      transition: none;
+    }
+  }
+</style>
+
+
+<script>
+  import { gsap } from "gsap";
+
+  function iniciarAnimacionHero() {
+    const hero = document.querySelector(".hero");
+
+    if (!hero) return;
+
+    // ==========================================
+    // ACCESIBILIDAD
+    // ==========================================
+
+    const reducirMovimiento = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (reducirMovimiento) return;
+
+    // ==========================================
+    // ELEMENTOS DEL HERO
+    // ==========================================
+
+    const etiqueta = hero.querySelector(".hero-etiqueta");
+    const titulo = hero.querySelector("h1");
+    const descripcion = hero.querySelector(".hero-descripcion");
+    const botones = hero.querySelectorAll(".hero-botones a");
+    const tarjetas = hero.querySelectorAll(".visual-tarjeta");
+
+    // ==========================================
+    // LÍNEA DE TIEMPO GSAP
+    // ==========================================
+
+    const timeline = gsap.timeline({
+      defaults: {
+        ease: "power3.out"
+      }
+    });
+
+    // Etiqueta
+    if (etiqueta) {
+      timeline.from(etiqueta, {
+        opacity: 0,
+        y: 20,
+        duration: 0.6
+      });
+    }
+
+    // Título
+    if (titulo) {
+      timeline.from(titulo, {
+        opacity: 0,
+        y: 50,
+        duration: 1
+      }, "-=0.3");
+    }
+
+    // Descripción
+    if (descripcion) {
+      timeline.from(descripcion, {
+        opacity: 0,
+        y: 30,
+        duration: 0.8
+      }, "-=0.5");
+    }
+
+    // Botones
+    if (botones.length > 0) {
+      timeline.from(botones, {
+        opacity: 0,
+        y: 25,
+        duration: 0.7,
+        stagger: 0.15
+      }, "-=0.4");
+    }
+
+    // Tarjetas decorativas
+    if (tarjetas.length > 0) {
+      timeline.from(tarjetas, {
+        opacity: 0,
+        y: 100,
+        rotation: -10,
+        scale: 0.85,
+        duration: 1.1,
+        stagger: 0.18,
+        clearProps: "all"
+      }, "-=0.7");
+    }
+  }
+
+    function iniciarInteraccionTarjetas() {
+    const hero = document.querySelector(".hero");
+
+    if (!hero) return;
+
+    // Evitar efectos de movimiento cuando el usuario
+    // solicita reducir animaciones.
+    const reducirMovimiento = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    // Aplicar únicamente en dispositivos con cursor preciso.
+    const permiteHover = window.matchMedia(
+        "(hover: hover) and (pointer: fine)"
+    ).matches;
+
+    if (reducirMovimiento || !permiteHover) return;
+
+    const tarjetas = hero.querySelectorAll(".visual-tarjeta");
+
+    tarjetas.forEach((tarjeta) => {
+        const elemento = tarjeta;
+
+        const moverX = gsap.quickTo(elemento, "x", {
+        duration: 0.4,
+        ease: "power3.out"
+        });
+
+        const moverY = gsap.quickTo(elemento, "y", {
+        duration: 0.4,
+        ease: "power3.out"
+        });
+
+        elemento.addEventListener("pointermove", (evento) => {
+        const rect = elemento.getBoundingClientRect();
+
+        const centroX = rect.left + rect.width / 2;
+        const centroY = rect.top + rect.height / 2;
+
+        const desplazamientoX = (evento.clientX - centroX) * 0.08;
+        const desplazamientoY = (evento.clientY - centroY) * 0.08;
+
+        moverX(desplazamientoX);
+        moverY(desplazamientoY);
+        });
+
+        elemento.addEventListener("pointerleave", () => {
+        moverX(0);
+        moverY(0);
+        });
+    });
+    }
+
+  iniciarAnimacionHero();
+  iniciarInteraccionTarjetas();
+</script>
