@@ -1,6 +1,8 @@
 
 ---
+import EventsSection from "../components/EventsSection.astro";
 import MainLayout from "../layouts/MainLayout.astro";
+import ResourcesSection from "../components/ResourcesSection.astro";
 
 const nombreProyecto = "Posonas";
 const descripcion = "Un espacio para conectar, expresarnos y celebrar nuestra diversidad.";
@@ -11,7 +13,7 @@ const descripcion = "Un espacio para conectar, expresarnos y celebrar nuestra di
   description={descripcion}
 >
   <main>
-    <div class="contenedor">
+    <div class="contenedor" id="hero-contenido">
       <span class="text-green-400">COMUNIDAD LGBTQ+</span>
 
       <h1>Bienvenid@s a <span>{nombreProyecto}</span></h1>
@@ -25,13 +27,17 @@ const descripcion = "Un espacio para conectar, expresarnos y celebrar nuestra di
   </main>
 
   <section id="comunidad">
-    <h2>Un espacio para ser tú</h2>
-    <p>
-      Estamos construyendo algo especial.
-      Próximamente encontrarás eventos,
-      recursos y espacios de comunidad.
-    </p>
-  </section>
+	<div class="comunidad-contenido">
+		<h2>Un espacio para ser tú</h2>
+		<p>
+		Estamos construyendo algo especial.
+		Próximamente encontrarás eventos,
+		recursos y espacios de comunidad.
+		</p>
+	</div>
+   </section>
+   <EventsSection />
+   <ResourcesSection />
 </MainLayout>
 
 <style>
@@ -121,3 +127,69 @@ const descripcion = "Un espacio para conectar, expresarnos y celebrar nuestra di
     margin: auto;
   }
 </style>
+
+
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function iniciarAnimaciones() {
+    const reducirMovimiento = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    // Evitar animaciones si el usuario prefiere reducir movimiento.
+    if (reducirMovimiento) return;
+
+    // ==========================================
+    // ANIMACIÓN DE ENTRADA DEL HERO
+    // ==========================================
+
+    const hero = document.querySelector("#hero-contenido");
+
+    if (hero) {
+      const elementos = hero.querySelectorAll(
+        ":scope > span, :scope > h1, :scope > p, :scope > a"
+      );
+
+      gsap.from(elementos, {
+        opacity: 0,
+        y: 35,
+        duration: 1,
+        stagger: 0.18,
+        ease: "power3.out",
+        clearProps: "all"
+      });
+    }
+
+    // ==========================================
+    // ANIMACIÓN DE LA SECCIÓN COMUNIDAD
+    // ==========================================
+
+    const comunidad = document.querySelector(
+      ".comunidad-contenido"
+    );
+
+    if (comunidad) {
+      gsap.from(comunidad.children, {
+        opacity: 0,
+        y: 60,
+        duration: 1,
+        stagger: 0.2,
+        ease: "power3.out",
+        clearProps: "all",
+
+        scrollTrigger: {
+          trigger: comunidad,
+          start: "top 85%",
+          once: true
+        }
+      });
+    }
+  }
+
+  iniciarAnimaciones();
+</script>

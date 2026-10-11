@@ -1,0 +1,110 @@
+
+---
+import ResourceCard from "./ResourceCard.astro";
+
+const recursos = [
+  {
+    titulo: "Bienestar",
+    descripcion:
+      "Explora información sobre autocuidado, bienestar emocional y herramientas para cuidar de ti.",
+    icono: "♥",
+    categoria: "Salud y bienestar"
+  },
+  {
+    titulo: "Derechos",
+    descripcion:
+      "Conoce información educativa sobre derechos, inclusión y respeto a la diversidad.",
+    icono: "⚖",
+    categoria: "Información"
+  },
+  {
+    titulo: "Comunidad",
+    descripcion:
+      "Descubre espacios de participación, iniciativas comunitarias y oportunidades para conectar.",
+    icono: "✦",
+    categoria: "Conexiones"
+  }
+];
+---
+
+<section id="recursos" class="bg-[#101019] px-6 py-24">
+  <div class="mx-auto max-w-6xl">
+
+    <div class="mb-12 max-w-3xl">
+      <span class="text-sm font-semibold tracking-[0.2em] text-fuchsia-300">
+        INFORMACIÓN Y APOYO
+      </span>
+
+      <h2 class="mt-5 text-4xl font-bold text-white md:text-6xl">
+        Recursos para
+        <span class="text-violet-400">nuestra comunidad</span>
+      </h2>
+
+      <p class="mt-5 text-lg leading-8 text-zinc-300">
+        Información, herramientas y espacios para acompañarnos.
+        Estamos construyendo una biblioteca de recursos accesibles.
+      </p>
+    </div>
+    <div id="recursos-grid" class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {recursos.map((recurso) => (
+        <ResourceCard {...recurso} />
+      ))}
+    </div>
+
+    <p class="mt-8 text-sm text-zinc-400">
+      Esta sección contiene información de demostración.
+      Próximamente incorporaremos recursos verificados.
+    </p>
+
+  </div>
+</section>
+
+
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function iniciarAnimacionRecursos() {
+    const contenedor = document.querySelector("#recursos-grid");
+
+    if (!contenedor) {
+      console.warn("Posonas: no se encontró recursos-grid");
+      return;
+    }
+
+    const tarjetas = contenedor.querySelectorAll(".resource-card");
+
+    console.log("Tarjetas de recursos encontradas:", tarjetas.length);
+
+    if (tarjetas.length === 0) return;
+
+    const reducirMovimiento = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (reducirMovimiento) return;
+
+    gsap.from(tarjetas, {
+      opacity: 0,
+      y: 60,
+      duration: 1,
+      stagger: 0.2,
+      ease: "power3.out",
+      clearProps: "all",
+
+      scrollTrigger: {
+        trigger: contenedor,
+        start: "top 90%",
+        once: true
+      }
+    });
+
+    ScrollTrigger.refresh();
+  }
+
+  iniciarAnimacionRecursos();
+</script>
+
