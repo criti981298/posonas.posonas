@@ -1,199 +1,311 @@
-
 ---
-const titulo = "Donde ser tú";
-const tituloDestacado = "lo cambia todo.";
-
 const descripcion =
-  "Una comunidad para conectar, compartir experiencias y celebrar nuestra diversidad.";
+  "Un espacio donde las identidades, historias y expresiones se encuentran. Conecta, comparte y celebra la libertad de ser tú.";
+
+const paneles = [
+  {
+    id: "identidad",
+    imagen: "/comunidad/identidad-1.jpg",
+    alto: 409,
+    alt: "Personas de la comunidad LGBTQ+ en un contexto de identidad",
+    etiqueta: "01 / IDENTIDAD",
+    titulo: "EXPRESA.",
+    descripcion: "Relatos que se sienten en el cuerpo, en la voz, en la mirada.",
+    palabras: ["gestos", "verdad", "ritmo"],
+  },
+  {
+    id: "comunidad",
+    imagen: "/comunidad/comunidad-1.jpg",
+    alto: 408,
+    alt: "Personas conversando y participando en una comunidad LGBTQ+",
+    etiqueta: "02 / COMUNIDAD",
+    titulo: "CONECTA.",
+    descripcion: "Encuentros con cuidado: presencia, escucha y red.",
+    palabras: ["encuentros", "red", "cuidado"],
+  },
+  {
+    id: "libertad",
+    imagen: "/comunidad/libertad-1.jpg",
+    alto: 408,
+    alt: "Personas celebrando y proyectando futuro en una comunidad LGBTQ+",
+    etiqueta: "03 / LIBERTAD",
+    titulo: "CELEBRA.",
+    descripcion: "Arte, futuro y voz: moverse es también reivindicar.",
+    palabras: ["futuro", "arte", "voz"],
+  },
+];
 ---
 
-<section class="hero">
-  <div class="hero-fondo" aria-hidden="true">
-    <div class="orb orb-uno"></div>
-    <div class="orb orb-dos"></div>
-    <div class="orb orb-tres"></div>
+<section class="hero" aria-labelledby="hero-titulo">
+  <div class="hero-atmosfera" aria-hidden="true">
+    <div class="luz luz-rosa"></div>
+    <div class="luz luz-violeta"></div>
+    <div class="luz luz-azul"></div>
+    <div class="hero-grano"></div>
   </div>
 
   <div class="hero-contenedor">
+    <div class="hero-superior">
+      <span class="hero-indice">POSONAS — 001</span>
+      <span class="hero-edicion">COMUNIDAD · IDENTIDAD · EXPRESIÓN</span>
+    </div>
 
     <div class="hero-contenido">
-
+      <div class="hero-arte" aria-hidden="true">
+        <div class="hero-arte__halo"></div>
+        <div class="hero-arte__escena">
+          <img class="hero-arte__figura" src="/comunidad/Retrato iridiscente con orgullo arcoíris.png" alt="" width="1536" height="1024" decoding="async" fetchpriority="high" />
+        </div>
+        <div class="hero-arte__sombra"></div>
+      </div>
       <div class="hero-etiqueta">
-        <span class="etiqueta-punto"></span>
-        UN ESPACIO PARA SER TÚ
-        <span aria-hidden="true">✦</span>
+        <span class="etiqueta-linea" aria-hidden="true"></span>
+        UN ESPACIO PARA SER LIBRE
       </div>
 
-      <h1>
-        {titulo}
-        <span class="titulo-destacado">
-          {tituloDestacado}
-        </span>
+      <h1 id="hero-titulo">
+        TU HISTORIA
+        <span class="titulo-linea">TIENE UN</span>
+        <span class="titulo-destacado">LUGAR AQUÍ.</span>
       </h1>
 
-      <p class="hero-descripcion">
-        {descripcion}
-      </p>
-
-      <div class="hero-botones">
-        <a href="#comunidad" class="boton-principal">
-          Explorar comunidad
-          <span aria-hidden="true">↗</span>
-        </a>
-
-        <a href="#eventos" class="boton-secundario">
-          Ver eventos
-        </a>
-      </div>
-
-    </div>
-
-    <div class="hero-visual" aria-hidden="true">
-      <div class="visual-tarjeta tarjeta-uno">
-        <span>EXPRESA</span>
-        <strong>Tu esencia.</strong>
-      </div>
-
-      <div class="visual-tarjeta tarjeta-dos">
-        <span>CONECTA</span>
-        <strong>Sin límites.</strong>
-      </div>
-
-      <div class="visual-tarjeta tarjeta-tres">
-        <span>CELEBRA</span>
-        <strong>Tu historia.</strong>
+      <div class="hero-informacion">
+        <p class="hero-descripcion">{descripcion}</p>
+        <div class="hero-botones">
+          <a href="#comunidad" class="boton-principal">
+            DESCUBRE POSONAS <span aria-hidden="true">↗</span>
+          </a>
+          <a href="#eventos" class="boton-secundario">
+            EXPLORAR EVENTOS <span aria-hidden="true">↗</span>
+          </a>
+        </div>
       </div>
     </div>
 
+    <!-- Paneles 3D editoriales con fotografía -->
+    <div class="panels-3d" aria-label="Identidad, comunidad y libertad">
+      {paneles.map((panel) => (
+        <article class="panel3d" data-panel={panel.id} aria-labelledby={`panel-${panel.id}`}>
+          <div class="panel3d__stage">
+            <div class="panel3d__frame" aria-hidden="true"></div>
+
+            <figure class="panel3d__media">
+              <img
+                src={panel.imagen}
+                alt={panel.alt}
+                loading="lazy"
+                decoding="async"
+                width="612"
+                height={panel.alto}
+              />
+              <div class="panel3d__mediaOverlay" aria-hidden="true"></div>
+              <div class="panel3d__grain" aria-hidden="true"></div>
+            </figure>
+
+            <div class="panel3d__type">
+              <span class="panel3d__kicker">{panel.etiqueta}</span>
+              <h2 class="panel3d__headline" id={`panel-${panel.id}`}>{panel.titulo}</h2>
+              <p class="panel3d__copy">{panel.descripcion}</p>
+              <div class="panel3d__chips" aria-hidden="true">
+                {panel.palabras.map((palabra) => <span>{palabra}</span>)}
+              </div>
+            </div>
+
+            <div class="panel3d__lente" aria-hidden="true"></div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="hero-inferior">
+      <span>UNIVERSO POSONAS © 2026</span>
+      <a href="#comunidad" class="hero-scroll">
+        DESLIZA PARA EXPLORAR <span aria-hidden="true">↓</span>
+      </a>
+      <span>HECHO PARA SER TÚ ✳</span>
+    </div>
   </div>
-
-  <a href="#comunidad" class="hero-scroll">
-    DESCUBRE MÁS
-    <span aria-hidden="true">↓</span>
-  </a>
 </section>
 
 <style>
   .hero {
     position: relative;
-    min-height: 90vh;
-    display: flex;
-    align-items: center;
+    min-height: 100svh;
     overflow: hidden;
     isolation: isolate;
-    background: var(--color-background);
-    padding: 100px 30px 85px;
+    background: #0d0d14;
+    color: #fff;
   }
 
-  .hero-fondo {
+  .hero-atmosfera {
     position: absolute;
     inset: 0;
-    overflow: hidden;
     z-index: -1;
+    overflow: hidden;
     pointer-events: none;
   }
 
-  .orb {
+  .luz {
     position: absolute;
     border-radius: 50%;
-    filter: blur(90px);
-    opacity: 0.28;
+    filter: blur(100px);
+    opacity: 0.22;
   }
 
-  .orb-uno {
-    width: 400px;
-    height: 400px;
-    background: #9d4edd;
-    top: -150px;
-    right: -100px;
+  .luz-rosa {
+    width: 42vw;
+    height: 42vw;
+    background: #e970a9;
+    top: 12%;
+    right: -20%;
   }
 
-  .orb-dos {
-    width: 350px;
-    height: 350px;
-    background: #f472b6;
-    bottom: -150px;
-    left: -100px;
+  .luz-violeta {
+    width: 35vw;
+    height: 35vw;
+    background: #8559dc;
+    top: 38%;
+    left: -15%;
   }
 
-  .orb-tres {
-    width: 250px;
-    height: 250px;
-    background: #60a5fa;
-    top: 40%;
-    left: 45%;
+  .luz-azul {
+    width: 28vw;
+    height: 28vw;
+    background: #456ab0;
+    bottom: -15%;
+    right: 25%;
+  }
+
+  .hero-grano {
+    position: absolute;
+    inset: 0;
+    opacity: 0.25;
+    background-image: radial-gradient(#ffffff18 0.5px, transparent 0.5px);
+    background-size: 5px 5px;
   }
 
   .hero-contenedor {
-    width: 100%;
-    max-width: 1250px;
+    width: min(100% - 64px, 1440px);
+    min-height: 100svh;
     margin: auto;
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero-superior,
+  .hero-inferior {
+    display: flex;
     align-items: center;
-    gap: 70px;
+    justify-content: space-between;
+    gap: 24px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #c9c0d0;
+  }
+
+  .hero-superior {
+    padding: 35px 0;
+    border-bottom: 1px solid #ffffff20;
   }
 
   .hero-contenido {
     position: relative;
-    z-index: 2;
+    z-index: 3;
+    padding: 90px 0 45px;
   }
 
   .hero-etiqueta {
-    display: inline-flex;
+    /* El retrato comparte la luz del hero y queda detrás del titular. */
+    position: relative;
+    z-index: 2;
+    display: flex;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 30px;
-    color: #f9a8d4;
-    font-size: 12px;
+    gap: 15px;
+    color: #f4b7d4;
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: 3px;
   }
 
-  .etiqueta-punto {
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: #f472b6;
-    box-shadow: 0 0 20px #f472b6;
+  .etiqueta-linea {
+    width: 38px;
+    height: 1px;
+    background: #e970a9;
+  }
+
+  .hero-arte {
+    position: absolute;
+    top: 55px;
+    right: -35px;
+    width: min(66%, 950px);
+    aspect-ratio: 3 / 2;
+    pointer-events: none;
+    perspective: 1100px;
+    mask-image: linear-gradient(90deg, transparent, #000 32%, #000 86%, transparent), linear-gradient(to bottom, transparent, #000 9%, #000 65%, transparent);
+    mask-composite: intersect;
+  }
+  .hero-arte__escena { position: absolute; inset: 0; transform-style: preserve-3d; }
+  .hero-arte__figura {
+    display: block;
+    width: 100%; height: 100%; object-fit: contain;
+    transform: translateZ(45px) scale(1.03);
+    mix-blend-mode: lighten;
+  }
+  .hero-arte__halo {
+    position: absolute; inset: 8% -10%;
+    background: radial-gradient(ellipse, #9b6dff30, #e970a91a 40%, transparent 68%);
+    filter: blur(28px);
+  }
+  .hero-arte__sombra {
+    position: absolute; bottom: 9%; left: 23%; width: 60%; height: 8%;
+    background: #06040b; border-radius: 50%; filter: blur(20px); opacity: .5;
   }
 
   h1 {
+    position: relative;
+    z-index: 2;
+    margin: 32px 0 0;
     font-family: var(--font-heading);
-    font-size: clamp(52px, 6vw, 96px);
+    font-size: clamp(52px, 8.2vw, 142px);
     font-weight: 800;
-    line-height: 1.02;
-    letter-spacing: -3px;
-    color: white;
+    line-height: 0.91;
+    letter-spacing: -0.065em;
+    text-transform: uppercase;
+  }
+
+  .titulo-linea,
+  .titulo-destacado {
+    display: block;
   }
 
   .titulo-destacado {
-    display: block;
-    margin-top: 12px;
-    background: linear-gradient(
-      90deg,
-      #f472b6,
-      #c084fc,
-      #60a5fa
-    );
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
+    color: #efa0c8;
+  }
+
+  .hero-informacion {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 40px;
+    margin-top: 42px;
   }
 
   .hero-descripcion {
-    max-width: 530px;
-    margin-top: 30px;
-    color: #c4c4d4;
-    font-size: 18px;
+    max-width: 490px;
+    margin: 0;
+    color: #dbd3df;
+    font-size: clamp(15px, 1.35vw, 19px);
     line-height: 1.8;
   }
 
   .hero-botones {
     display: flex;
     flex-wrap: wrap;
-    gap: 15px;
-    margin-top: 40px;
+    justify-content: flex-end;
+    gap: 12px;
   }
 
   .boton-principal,
@@ -201,319 +313,447 @@ const descripcion =
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    padding: 16px 28px;
+    gap: 20px;
+    min-height: 54px;
+    padding: 15px 23px;
     border-radius: 999px;
-    font-weight: 600;
-    font-size: 14px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
     text-decoration: none;
-    transition:
-      transform 0.3s ease,
-      background 0.3s ease;
+    transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
   }
 
   .boton-principal {
-    background: #f472b6;
-    color: #101019;
-  }
-
-  .boton-principal:hover {
-    transform: translateY(-4px);
-    background: #f9a8d4;
+    background: #efa0c8;
+    color: #17111d;
   }
 
   .boton-secundario {
-    border: 1px solid #ffffff55;
+    border: 1px solid #ffffff75;
     color: white;
   }
 
+  .boton-principal:hover,
   .boton-secundario:hover {
-    transform: translateY(-4px);
-    background: #ffffff15;
+    transform: translateY(-3px);
   }
 
-  .hero-visual {
-    display: flex;
+  .boton-principal:hover {
+    background: #ffd1e7;
+  }
+
+  .boton-secundario:hover {
+    background: #ffffff16;
+  }
+
+  .boton-principal:focus-visible,
+  .boton-secundario:focus-visible,
+  .hero-scroll:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 5px;
+  }
+
+  /* PANEL EDITORIAL 3D - DISTRIBUCION HORIZONTAL EN ESCRITORIO */
+  .panels-3d {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    padding: 34px 0 54px;
+  }
+
+  .panel3d {
+    position: relative;
+    height: clamp(270px, 31vw, 410px);
+    min-width: 0;
+    perspective: 1200px;
+  }
+
+  .panel3d__stage {
+    position: absolute;
+    inset: 0;
+    transform-style: preserve-3d;
+    border-radius: 16px;
+    box-shadow: 0 45px 110px #00000073;
+    /* Sin fondo ni recorte en este plano: la foto vive detrás, a -30px. */
+    transform: translateZ(0) rotateX(0deg) rotateY(0deg);
+  }
+
+  .panel3d.is-interacting .panel3d__stage {
+    will-change: transform;
+  }
+
+  .panel3d__stage::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    border: 1px solid #f7f3ee24;
+    background: #21172e;
+    transform: translateZ(-46px) scale(1.04);
+    pointer-events: none;
+  }
+
+  .panel3d__frame {
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    pointer-events: none;
+    border: 1px solid #f7f3ee29;
+    background: linear-gradient(180deg, #f7f3ee1a, transparent);
+    z-index: 4;
+    transform: translateZ(1px);
+  }
+
+  .panel3d__frame::after {
+    content: "";
+    position: absolute;
+    inset: 8px;
+    border: 1px solid #f7f3ee1c;
+    border-radius: 9px;
+  }
+
+  .panel3d__media {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    z-index: 1;
+    border-radius: 16px;
+    overflow: hidden;
+    transform: translateZ(-30px) scale(1.025);
+    background: linear-gradient(145deg, #b9508c, #47366e 60%, #233f6b);
+  }
+
+  .panel3d[data-panel="comunidad"] .panel3d__media {
+    background: linear-gradient(145deg, #7c5aaa, #1e316d);
+  }
+
+  .panel3d[data-panel="libertad"] .panel3d__media {
+    background: linear-gradient(145deg, #4e8aab, #7752a8);
+  }
+
+  .panel3d__media.sin-imagen img { display: none; }
+
+  .panel3d__media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 35%;
+    filter: saturate(1.05) contrast(1.05);
+    transform: scale(1.02);
+  }
+
+  .panel3d__mediaOverlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, #ff4fb147, transparent 45%),
+      linear-gradient(270deg, #5ed4ff2e, transparent 52%),
+      linear-gradient(to bottom, #0705101a 0%, #070510b8 85%, #070510eb 100%),
+      radial-gradient(900px 200px at 25% 15%, #9b6dff2e, transparent 52%);
+    opacity: 0.85;
+  }
+
+  .panel3d__grain {
+    position: absolute;
+    inset: 0;
+    opacity: 0.22;
+    background-image: radial-gradient(#ffffff33 0.6px, transparent 0.6px);
+    background-size: 6px 6px;
+    mix-blend-mode: overlay;
+  }
+
+  .panel3d__lente {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    border-radius: 16px;
+    pointer-events: none;
+    background: radial-gradient(
+      circle at var(--px, 50%) var(--py, 50%),
+      #ffffff3d,
+      #ff4fb124 18%,
+      #9b6dff14 42%,
+      transparent 60%
+    );
+    opacity: 0;
+    transform: translateZ(28px);
+    transition: opacity 0.15s ease;
+    mix-blend-mode: screen;
+  }
+
+  .panel3d__type {
+    position: absolute;
+    left: 22px;
+    right: 22px;
+    bottom: 20px;
+    z-index: 5;
+    transform: translateZ(40px);
+  }
+
+  .panel3d__kicker {
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    gap: 15px;
-    min-height: 440px;
-    perspective: 1000px;
-  }
-
-  .visual-tarjeta {
-    width: 33%;
-    height: 340px;
-    border-radius: 22px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    box-shadow: 0 25px 60px #00000040;
-    transition: transform 0.4s ease;
-  }
-
-  .visual-tarjeta:hover {
-    transform: translateY(-15px) rotate(0deg);
-  }
-
-  .visual-tarjeta span {
     font-size: 10px;
-    letter-spacing: 2px;
-    margin-bottom: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: #f7f3eebf;
+    font-weight: 800;
   }
 
-  .visual-tarjeta strong {
+  .panel3d__headline {
+    display: block;
+    margin: 6px 0 0;
     font-family: var(--font-heading);
-    font-size: clamp(16px, 2vw, 25px);
-    line-height: 1.1;
+    font-size: clamp(22px, 2.6vw, 38px);
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    text-transform: uppercase;
+    font-weight: 900;
   }
 
-  .tarjeta-uno {
-    background: linear-gradient(160deg, #f472b6, #9d4edd);
-    transform: rotate(-8deg) translateY(30px);
+  .panel3d__copy {
+    margin: 8px 0 0;
+    max-width: 34ch;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #f7f3eec7;
   }
 
-  .tarjeta-dos {
-    background: linear-gradient(160deg, #c084fc, #4338ca);
-    transform: translateY(-25px);
+  .panel3d__chips {
+    margin-top: 10px;
+    display: flex;
+    gap: 7px;
+    flex-wrap: wrap;
   }
 
-  .tarjeta-tres {
-    background: linear-gradient(160deg, #60a5fa, #a855f7);
-    transform: rotate(8deg) translateY(30px);
+  .panel3d__chips span {
+    font-size: 9px;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: #f7f3eead;
+    padding: 6px 9px;
+    border-radius: 999px;
+    border: 1px solid #f7f3ee24;
+    background: #0000002e;
+  }
+
+  .hero-inferior {
+    margin-top: auto;
+    padding: 25px 0 30px;
+    border-top: 1px solid #ffffff20;
   }
 
   .hero-scroll {
-    position: absolute;
-    bottom: 25px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 15px;
-    color: #a1a1aa;
-    font-size: 11px;
-    letter-spacing: 2px;
+    gap: 12px;
+    color: #f3e8f3;
     text-decoration: none;
   }
 
-  @media (max-width: 1000px) {
-    .hero-contenedor {
-      grid-template-columns: 1fr;
-      gap: 40px;
-    }
-
-    .hero-contenido {
-      text-align: center;
-    }
-
-    .hero-etiqueta,
-    .hero-botones {
-      justify-content: center;
-    }
-
-    .hero-descripcion {
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .hero-visual {
-      min-height: 300px;
-    }
-
-    .visual-tarjeta {
-      max-width: 180px;
-      height: 260px;
-    }
+  .hero-scroll span {
+    font-size: 18px;
   }
 
-  @media (max-width: 600px) {
-    .hero {
-      padding: 85px 20px 90px;
-    }
+  @media (max-width: 1050px) {
+    .hero-arte { top: 75px; right: -55px; width: 68%; opacity: .7; }
+    .hero-contenido { padding-top: 75px; }
+    h1 { font-size: clamp(54px, 9vw, 105px); }
+    .hero-informacion { align-items: flex-start; flex-direction: column; gap: 25px; }
+    .hero-botones { justify-content: flex-start; }
+    .panel3d { height: 290px; }
+    .panel3d__type { left: 15px; right: 15px; bottom: 14px; }
+    .panel3d__copy { font-size: 11px; }
+    .panel3d__chips { gap: 4px; }
+    .panel3d__chips span { font-size: 8px; padding: 4px 6px; }
+  }
 
-    h1 {
-      font-size: clamp(42px, 11vw, 64px);
-      letter-spacing: -2px;
-    }
+  @media (max-width: 650px) {
+    .hero-arte { top: 70px; right: -25px; width: 100%; opacity: .4; }
+    .hero-contenedor { width: min(100% - 36px, 1440px); }
+    .hero-superior { padding: 22px 0; font-size: 9px; }
+    .hero-edicion { display: none; }
+    .hero-contenido { padding: 85px 0 35px; }
+    .hero-etiqueta { font-size: 9px; letter-spacing: 2px; }
+    h1 { font-size: clamp(45px, 12vw, 78px); letter-spacing: -0.06em; overflow-wrap: anywhere; }
+    .hero-informacion { margin-top: 28px; }
+    .hero-descripcion { font-size: 15px; }
+    .hero-botones { width: 100%; }
+    .boton-principal, .boton-secundario { font-size: 10px; min-height: 48px; padding: 13px 18px; }
 
-    .hero-descripcion {
-      font-size: 16px;
-    }
-
-    .hero-visual {
-      gap: 8px;
-      min-height: 220px;
-    }
-
-    .visual-tarjeta {
-      height: 190px;
-      padding: 12px;
-      border-radius: 14px;
-    }
-
-    .visual-tarjeta strong {
-      font-size: 15px;
-    }
-
-    .visual-tarjeta span {
-      font-size: 8px;
-    }
+    /* Paneles apilados: legibles y con espacio para textos y chips. */
+    .panels-3d { grid-template-columns: 1fr; gap: 16px; padding: 25px 0 40px; }
+    .panel3d { height: 260px; }
+    .panel3d__type { left: 20px; right: 20px; bottom: 17px; }
+    .panel3d__headline { font-size: 30px; }
+    .panel3d__copy { font-size: 12px; }
+    .panel3d__chips span { font-size: 9px; }
+    .hero-inferior { padding: 20px 0; font-size: 8px; letter-spacing: 1px; }
+    .hero-inferior > span:last-child { display: none; }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .visual-tarjeta,
-    .boton-principal,
-    .boton-secundario {
-      transition: none;
-    }
+    .boton-principal, .boton-secundario, .panel3d__lente { transition: none; }
+    .panel3d.is-interacting .panel3d__stage { will-change: auto; }
   }
 </style>
 
-
 <script>
   import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-  function iniciarAnimacionHero() {
-    const hero = document.querySelector(".hero");
+  gsap.registerPlugin(ScrollTrigger);
 
+  function iniciarHero() {
+    const hero = document.querySelector<HTMLElement>(".hero");
     if (!hero) return;
 
-    // ==========================================
-    // ACCESIBILIDAD
-    // ==========================================
-
-    const reducirMovimiento = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-
-    if (reducirMovimiento) return;
-
-    // ==========================================
-    // ELEMENTOS DEL HERO
-    // ==========================================
-
-    const etiqueta = hero.querySelector(".hero-etiqueta");
-    const titulo = hero.querySelector("h1");
-    const descripcion = hero.querySelector(".hero-descripcion");
-    const botones = hero.querySelectorAll(".hero-botones a");
-    const tarjetas = hero.querySelectorAll(".visual-tarjeta");
-
-    // ==========================================
-    // LÍNEA DE TIEMPO GSAP
-    // ==========================================
-
-    const timeline = gsap.timeline({
-      defaults: {
-        ease: "power3.out"
-      }
+    // Si aun no existen las tres fotos, mostrar los degradados de respaldo.
+    hero.querySelectorAll<HTMLImageElement>(".panel3d__media img").forEach((imagen) => {
+      const marcarFaltante = () => {
+        imagen.closest(".panel3d__media")?.classList.add("sin-imagen");
+      };
+      imagen.addEventListener("error", marcarFaltante);
+      if (imagen.complete && imagen.naturalWidth === 0) marcarFaltante();
     });
 
-    // Etiqueta
-    if (etiqueta) {
-      timeline.from(etiqueta, {
-        opacity: 0,
-        y: 20,
-        duration: 0.6
+    // matchMedia revierte animaciones y eventos si cambia la preferencia.
+    const preferencias = gsap.matchMedia();
+    preferencias.add("(prefers-reduced-motion: no-preference)", () => {
+      const etiqueta = hero.querySelector(".hero-etiqueta");
+      const titulo = hero.querySelector("h1");
+      const descripcion = hero.querySelector(".hero-descripcion");
+      const botones = hero.querySelectorAll(".hero-botones a");
+      const paneles = hero.querySelectorAll(".panel3d");
+      const inferior = hero.querySelector(".hero-inferior");
+      const figura = hero.querySelector(".hero-arte__figura");
+      if (figura) gsap.to(figura, {
+        y: -12, duration: 4, repeat: -1, yoyo: true, ease: "sine.inOut",
       });
-    }
 
-    // Título
-    if (titulo) {
-      timeline.from(titulo, {
-        opacity: 0,
-        y: 50,
-        duration: 1
-      }, "-=0.3");
-    }
+      const timeline = gsap.timeline({ defaults: {
+        ease: "power3.out",
+        clearProps: "transform,opacity,visibility",
+      } });
+      if (etiqueta) timeline.from(etiqueta, { autoAlpha: 0, y: 25, duration: 0.7 });
+      if (titulo) timeline.from(titulo, { autoAlpha: 0, y: 65, duration: 1.1 }, "-=0.35");
+      if (descripcion) timeline.from(descripcion, { autoAlpha: 0, y: 30, duration: 0.8 }, "-=0.6");
+      if (botones.length) timeline.from(botones, {
+        autoAlpha: 0, y: 25, stagger: 0.15, duration: 0.7
+      }, "-=0.45");
 
-    // Descripción
-    if (descripcion) {
-      timeline.from(descripcion, {
-        opacity: 0,
-        y: 30,
-        duration: 0.8
-      }, "-=0.5");
-    }
+      // Cada placa entra al verla; en móvil no se pierde el reveal bajo el hero.
+      paneles.forEach((panel, indice) => {
+        gsap.from(panel, {
+          autoAlpha: 0,
+          y: 52,
+          duration: 1,
+          delay: window.matchMedia("(min-width: 651px)").matches ? indice * 0.12 : 0,
+          ease: "power3.out",
+          clearProps: "transform,opacity,visibility",
+          scrollTrigger: { trigger: panel, start: "top 90%", once: true },
+        });
+      });
 
-    // Botones
-    if (botones.length > 0) {
-      timeline.from(botones, {
-        opacity: 0,
-        y: 25,
-        duration: 0.7,
-        stagger: 0.15
-      }, "-=0.4");
-    }
+      if (inferior) gsap.from(inferior, {
+        autoAlpha: 0, y: 15, duration: 0.6,
+        clearProps: "transform,opacity,visibility",
+        scrollTrigger: { trigger: inferior, start: "top 95%", once: true },
+      });
+    });
 
-    // Tarjetas decorativas
-    if (tarjetas.length > 0) {
-      timeline.from(tarjetas, {
-        opacity: 0,
-        y: 100,
-        rotation: -10,
-        scale: 0.85,
-        duration: 1.1,
-        stagger: 0.18,
-        clearProps: "all"
-      }, "-=0.7");
-    }
+    preferencias.add(
+      "(prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine)",
+      () => {
+        const limpiarPaneles = iniciarInteraccion3D(hero);
+        const controlador = new AbortController();
+        const escena = hero.querySelector<HTMLElement>(".hero-arte__escena");
+        if (escena) {
+          const girarX = gsap.quickTo(escena, "rotationX", { duration: .8, ease: "power3.out" });
+          const girarY = gsap.quickTo(escena, "rotationY", { duration: .8, ease: "power3.out" });
+          const moverX = gsap.quickTo(escena, "x", { duration: .8, ease: "power3.out" });
+          hero.addEventListener("pointermove", (evento) => {
+            if (evento.pointerType === "touch") return;
+            const rect = hero.getBoundingClientRect();
+            const x = (evento.clientX - rect.left) / rect.width - .5;
+            const y = (evento.clientY - rect.top) / Math.min(rect.height, window.innerHeight) - .5;
+            girarX(Math.max(-6, Math.min(6, -y * 12)));
+            girarY(x * 16);
+            moverX(x * 22);
+          }, { signal: controlador.signal });
+          const reset = () => { girarX(0); girarY(0); moverX(0); };
+          hero.addEventListener("pointerleave", reset, { signal: controlador.signal });
+          window.addEventListener("blur", reset, { signal: controlador.signal });
+        }
+        return () => { controlador.abort(); limpiarPaneles(); };
+      }
+    );
   }
 
-    function iniciarInteraccionTarjetas() {
-    const hero = document.querySelector(".hero");
+  function iniciarInteraccion3D(hero: HTMLElement) {
+    const controlador = new AbortController();
+    const opciones = { signal: controlador.signal };
+    const paneles = hero.querySelectorAll<HTMLElement>(".panel3d");
+    paneles.forEach((panel) => {
+      const stage = panel.querySelector<HTMLElement>(".panel3d__stage");
+      const lente = panel.querySelector<HTMLElement>(".panel3d__lente");
+      if (!stage || !lente) return;
 
-    if (!hero) return;
+      // Una sola fuente de transformaciones: GSAP controla la rotacion.
+      const girarX = gsap.quickTo(stage, "rotationX", {
+        duration: 0.45, ease: "power3.out"
+      });
+      const girarY = gsap.quickTo(stage, "rotationY", {
+        duration: 0.45, ease: "power3.out"
+      });
 
-    // Evitar efectos de movimiento cuando el usuario
-    // solicita reducir animaciones.
-    const reducirMovimiento = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-    ).matches;
+      panel.addEventListener("pointerenter", (evento) => {
+        if (evento.pointerType === "touch") return;
+        panel.classList.add("is-interacting");
+        lente.style.opacity = "1";
+      }, opciones);
 
-    // Aplicar únicamente en dispositivos con cursor preciso.
-    const permiteHover = window.matchMedia(
-        "(hover: hover) and (pointer: fine)"
-    ).matches;
+      panel.addEventListener("pointermove", (evento: PointerEvent) => {
+        if (evento.pointerType === "touch") return;
+        const rect = panel.getBoundingClientRect();
+        const x = Math.max(0, Math.min(1, (evento.clientX - rect.left) / rect.width));
+        const y = Math.max(0, Math.min(1, (evento.clientY - rect.top) / rect.height));
 
-    if (reducirMovimiento || !permiteHover) return;
+        lente.style.setProperty("--px", `${x * 100}%`);
+        lente.style.setProperty("--py", `${y * 100}%`);
+        girarY((x - 0.5) * 20);
+        girarX((0.5 - y) * 20);
+      }, opciones);
 
-    const tarjetas = hero.querySelectorAll(".visual-tarjeta");
+      const reset = () => {
+        girarX(0);
+        girarY(0);
+        panel.classList.remove("is-interacting");
+        lente.style.opacity = "0";
+        lente.style.setProperty("--px", "50%");
+        lente.style.setProperty("--py", "50%");
+      };
 
-    tarjetas.forEach((tarjeta) => {
-        const elemento = tarjeta;
-
-        const moverX = gsap.quickTo(elemento, "x", {
-        duration: 0.4,
-        ease: "power3.out"
-        });
-
-        const moverY = gsap.quickTo(elemento, "y", {
-        duration: 0.4,
-        ease: "power3.out"
-        });
-
-        elemento.addEventListener("pointermove", (evento) => {
-        const rect = elemento.getBoundingClientRect();
-
-        const centroX = rect.left + rect.width / 2;
-        const centroY = rect.top + rect.height / 2;
-
-        const desplazamientoX = (evento.clientX - centroX) * 0.08;
-        const desplazamientoY = (evento.clientY - centroY) * 0.08;
-
-        moverX(desplazamientoX);
-        moverY(desplazamientoY);
-        });
-
-        elemento.addEventListener("pointerleave", () => {
-        moverX(0);
-        moverY(0);
-        });
+      panel.addEventListener("pointerleave", reset, opciones);
+      panel.addEventListener("pointercancel", reset, opciones);
+      window.addEventListener("blur", reset, opciones);
     });
-    }
 
-  iniciarAnimacionHero();
-  iniciarInteraccionTarjetas();
+    return () => {
+      controlador.abort();
+      paneles.forEach((panel) => {
+        panel.classList.remove("is-interacting");
+        const lente = panel.querySelector<HTMLElement>(".panel3d__lente");
+        lente?.style.removeProperty("opacity");
+        lente?.style.removeProperty("--px");
+        lente?.style.removeProperty("--py");
+      });
+    };
+  }
+
+  iniciarHero();
 </script>

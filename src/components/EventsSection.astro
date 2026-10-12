@@ -1,13 +1,15 @@
 
 ---
 import EventCard from "./EventCard.astro";
+import EditorialBackdrop from "./EditorialBackdrop.astro";
 import { eventos } from "../data/eventos";
 ---
 
 <section id="eventos" class="bg-[#101019] px-6 py-24">
-  <div class="mx-auto max-w-6xl">
+  <EditorialBackdrop src="/comunidad/Retrato cinematográfico con tela multicolor.png" variant="left" />
+  <div class="events-content mx-auto max-w-6xl">
 
-    <div class="mb-12 max-w-2xl">
+    <div class="events-heading mb-12 max-w-2xl">
       <span class="text-sm font-semibold tracking-[0.2em] text-fuchsia-300">
         CONECTA · PARTICIPA · CELEBRA
       </span>
@@ -37,6 +39,17 @@ import { eventos } from "../data/eventos";
 
   </div>
 </section>
+
+<style>
+  #eventos { position: relative; isolation: isolate; }
+  .events-content { position: relative; z-index: 2; }
+  .events-heading { margin-left: 50%; min-height: 370px; padding-top: 60px; }
+  .events-heading h2 { font-size: clamp(38px, 5vw, 72px); line-height: 1.05; letter-spacing: -.04em; }
+  @media (max-width: 768px) {
+    .events-heading { margin-left: 0; min-height: 420px; padding-top: 190px; }
+    .events-heading p { text-shadow: 0 2px 14px #101019; }
+  }
+</style>
 
 <script>
   import { gsap } from "gsap";

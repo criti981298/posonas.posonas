@@ -1,6 +1,7 @@
 
 ---
 import ResourceCard from "./ResourceCard.astro";
+import EditorialBackdrop from "./EditorialBackdrop.astro";
 
 const recursos = [
   {
@@ -28,16 +29,16 @@ const recursos = [
 ---
 
 <section id="recursos" class="bg-[#101019] px-6 py-24">
-  <div class="mx-auto max-w-6xl">
+  <EditorialBackdrop src="/comunidad/Orgullo trans bajo luces neón.png" variant="right" />
+  <div class="resources-content mx-auto max-w-6xl">
 
-    <div class="mb-12 max-w-3xl">
+    <div class="resources-heading mb-12 max-w-3xl">
       <span class="text-sm font-semibold tracking-[0.2em] text-fuchsia-300">
         INFORMACIÓN Y APOYO
       </span>
 
       <h2 class="mt-5 text-4xl font-bold text-white md:text-6xl">
-        Recursos para
-        <span class="text-violet-400">nuestra comunidad</span>
+        Recursos para{" "}<span class="text-violet-400">nuestra comunidad</span>
       </h2>
 
       <p class="mt-5 text-lg leading-8 text-zinc-300">
@@ -58,6 +59,17 @@ const recursos = [
 
   </div>
 </section>
+
+<style>
+  #recursos { position: relative; isolation: isolate; }
+  .resources-content { position: relative; z-index: 2; }
+  .resources-heading { max-width: 53%; min-height: 370px; padding-top: 50px; }
+  .resources-heading h2 { font-size: clamp(38px, 5vw, 72px); line-height: 1.05; letter-spacing: -.04em; }
+  @media (max-width: 768px) {
+    .resources-heading { max-width: 100%; min-height: 440px; padding-top: 190px; }
+    .resources-heading p { text-shadow: 0 2px 14px #101019; }
+  }
+</style>
 
 
 

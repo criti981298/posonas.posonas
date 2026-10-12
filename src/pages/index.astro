@@ -5,6 +5,8 @@ import MainLayout from "../layouts/MainLayout.astro";
 import Hero from "../components/Hero.astro";
 import EventsSection from "../components/EventsSection.astro";
 import ResourcesSection from "../components/ResourcesSection.astro";
+import EditorialBackdrop from "../components/EditorialBackdrop.astro";
+import ManifestoSection from "../components/ManifestoSection.astro";
 
 const descripcion =
   "Un espacio para conectar, expresarnos y celebrar nuestra diversidad.";
@@ -33,6 +35,7 @@ const descripcion =
          ========================================== -->
 
     <section id="comunidad">
+      <EditorialBackdrop src="/comunidad/Retrato Editorial de Orgullo Arcoíris.png" variant="panorama" />
 
       <div class="comunidad-contenido">
 
@@ -47,6 +50,8 @@ const descripcion =
       </div>
 
     </section>
+
+    <ManifestoSection />
 
 
     <!-- ==========================================
@@ -74,13 +79,20 @@ const descripcion =
 <style>
 
   #comunidad {
-    padding: 100px 25px;
+    position: relative;
+    isolation: isolate;
+    min-height: clamp(560px, 56vw, 860px);
+    display: grid;
+    align-items: center;
+    padding: 120px 25px;
     text-align: center;
     background: var(--color-background);
   }
 
   .comunidad-contenido {
-    max-width: 850px;
+    position: relative;
+    z-index: 2;
+    max-width: min(34vw, 450px);
     margin: 0 auto;
   }
 
@@ -104,8 +116,11 @@ const descripcion =
   @media (max-width: 768px) {
 
     #comunidad {
-      padding: 80px 20px;
+      min-height: 520px;
+      padding: clamp(240px, 58vw, 440px) 20px 70px;
     }
+
+    .comunidad-contenido { max-width: 560px; }
 
     #comunidad p {
       font-size: 16px;

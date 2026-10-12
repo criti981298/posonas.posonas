@@ -1,0 +1,134 @@
+---
+const ideas = [
+  { id: "ser", nombre: "Ser", palabra: "SIN PEDIR PERMISO.", texto: "Tu identidad no necesita una explicación. Aquí hay espacio para tus matices, tus cambios y tu forma de habitar el mundo.", nota: "Tu historia empieza contigo." },
+  { id: "conectar", nombre: "Conectar", palabra: "ENCONTRARNOS.", texto: "Una conversación, una mirada, un encuentro. Construimos comunidad cuando hacemos espacio para escuchar y acompañarnos.", nota: "Hay lugar para todas nuestras voces." },
+  { id: "crear", nombre: "Crear", palabra: "IMAGINAR MÁS.", texto: "El arte, las ideas y la expresión abren caminos. Lo que nos hace diferentes también puede acercarnos.", nota: "El futuro también lleva tus colores." },
+];
+const imagenes: Record<string, { src: string; width: number; height: number }> = {
+  ser: { src: "/comunidad/pies.jpg", width: 736, height: 981 },
+  conectar: { src: "/comunidad/grupoLGBT.jpg", width: 1000, height: 1500 },
+  crear: { src: "/comunidad/FIESTALGBT.jpg", width: 736, height: 1103 },
+};
+---
+
+<section id="manifiesto" aria-labelledby="manifiesto-titulo">
+  <div class="manifesto-container">
+    <div class="manifesto-meta"><span>EL MANIFIESTO POSONAS</span><span>IDENTIDAD EN MOVIMIENTO ↗</span></div>
+    <div class="manifesto-layout">
+      <div class="manifesto-intro">
+        <span class="manifesto-kicker">UN MISMO ESPACIO. MIL FORMAS DE VIVIRLO.</span>
+        <h2 id="manifiesto-titulo">Hay mil formas<br />de{" "}<em>ser tú.</em></h2>
+        <p>No tenemos que parecernos para pertenecer. Explora lo que nos mueve.</p>
+        <div class="manifesto-tabs" role="tablist" aria-label="Explora el manifiesto">
+          {ideas.map((idea, i) => <button type="button" role="tab" id={`idea-${idea.id}`} aria-controls={`texto-${idea.id}`} aria-selected={i === 0 ? "true" : "false"} tabindex={i === 0 ? 0 : -1}><span aria-hidden="true">0{i + 1}</span>{idea.nombre}<span aria-hidden="true">↗</span></button>)}
+        </div>
+      </div>
+      <div class="manifesto-perspective">
+        <div class="manifesto-plate">
+          <span class="manifesto-orbit" aria-hidden="true">✳</span>
+          {ideas.map((idea, i) => <div class="manifesto-message" role="tabpanel" id={`texto-${idea.id}`} aria-labelledby={`idea-${idea.id}`} tabindex="0" hidden={i !== 0}>
+            <div class="manifesto-photo" aria-hidden="true">
+              <img src={imagenes[idea.id].src} alt="" width={imagenes[idea.id].width} height={imagenes[idea.id].height} loading="lazy" decoding="async" />
+            </div>
+            <div class="manifesto-copy">
+            <span class="manifesto-page">POSONAS / 0{i + 1}</span>
+            <h3>{idea.palabra}</h3>
+            <p>{idea.texto}</p>
+            <span class="manifesto-note">{idea.nota}</span>
+            </div>
+          </div>)}
+        </div>
+      </div>
+    </div>
+    <div class="manifesto-footer"><span>PERTENECER TAMBIÉN ES PODER SER DIFERENTE.</span><a href="#eventos">ENCUENTRA TU PRÓXIMO ENCUENTRO <span aria-hidden="true">↓</span></a></div>
+  </div>
+</section>
+
+<style>
+  #manifiesto { position: relative; z-index: 1; isolation: isolate; background: #101019; padding: 100px 32px 130px; }
+  .manifesto-container { max-width: 1200px; margin: auto; }
+  .manifesto-meta, .manifesto-footer { display: flex; justify-content: space-between; gap: 24px; padding: 25px 0; border-top: 1px solid #ffffff24; color: #c4b8d2; font-size: 10px; letter-spacing: .16em; }
+  .manifesto-layout { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 80px; padding: 70px 0 90px; }
+  .manifesto-kicker { font-size: 10px; letter-spacing: .16em; color: #f4b7d4; }
+  h2 { margin: 25px 0; font-size: clamp(45px, 5.6vw, 82px); font-weight: 800; line-height: 1; letter-spacing: -.055em; }
+  h2 em { color: #efa0c8; font-style: normal; }
+  .manifesto-intro > p { max-width: 38ch; color: #c4c4d4; font-size: 17px; line-height: 1.7; }
+  .manifesto-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 30px; }
+  button { display: inline-flex; align-items: center; gap: 13px; padding: 14px 17px; border: 1px solid #ffffff30; border-radius: 999px; background: transparent; color: #e7dfe9; cursor: pointer; font-size: 13px; transition: background .2s, color .2s; }
+  button span:first-child { font-size: 9px; opacity: .7; }
+  button[aria-selected="true"] { background: #efa0c8; color: #17111d; border-color: #efa0c8; }
+  button:hover { border-color: #efa0c8; }
+  button:focus-visible, a:focus-visible, [role="tabpanel"]:focus-visible { outline: 2px solid #efa0c8; outline-offset: 6px; }
+  .manifesto-perspective { perspective: 1200px; padding: 20px; }
+  .manifesto-plate { position: relative; min-height: 390px; border: 1px solid #f4b7d450; border-radius: 20px; background: radial-gradient(ellipse at 90% 0%, #714c8540, transparent 70%), #21172e; box-shadow: 16px 24px 0 #efa0c80a, 0 35px 70px #0005; transform: rotate(-3deg); transform-style: preserve-3d; }
+  .manifesto-plate::before { content: ""; position: absolute; inset: 9px; border: 1px solid #ffffff26; border-radius: 12px; pointer-events: none; transform: translateZ(3px); }
+  .manifesto-orbit { position: absolute; top: -48px; right: 22px; font-size: 130px; line-height: 1; color: #efa0c8; transform: translateZ(85px) rotate(12deg); text-shadow: 0 12px 30px #e970a93a; }
+  .manifesto-message { position: relative; transform-style: preserve-3d; }
+  .manifesto-copy { position: relative; padding: 44px 36px 35px; transform: translateZ(40px); text-shadow: 0 2px 16px #08050c80; }
+  .manifesto-photo { position: absolute; inset: 0; overflow: hidden; border-radius: 19px; transform: translateZ(1px); background: #21172e; }
+  .manifesto-photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 75% 22%; filter: saturate(.9) contrast(1.05); }
+  #texto-ser .manifesto-photo img { object-position: center bottom; }
+  #texto-crear .manifesto-photo img { object-position: center 52%; }
+  #texto-conectar .manifesto-photo img { object-position: center 28%; }
+  .manifesto-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, #21172ec7, #21172e26), linear-gradient(to bottom, #21172e05 10%, #21172e66 40%, #21172ef5 90%); }
+  .manifesto-message[hidden] { display: none; }
+  .manifesto-page { color: #d3bddf; font-size: 10px; letter-spacing: .2em; }
+  h3 { margin: 45px 0 20px; color: #fff2fa; font-size: clamp(27px, 3.4vw, 50px); font-weight: 800; line-height: .98; letter-spacing: -.04em; overflow-wrap: anywhere; }
+  .manifesto-message p { max-width: 38ch; color: #e0d5e7; font-size: 14px; line-height: 1.8; }
+  .manifesto-note { display: block; margin-top: 28px; padding-top: 18px; border-top: 1px solid #ffffff24; color: #f4b7d4; font-size: 12px; }
+  .manifesto-footer a { color: #eee2f2; text-decoration: none; }
+  @media (max-width: 850px) { .manifesto-layout { gap: 28px; } .manifesto-copy { padding: 36px 25px; } }
+  @media (max-width: 650px) {
+    #manifiesto { padding: 65px 22px 100px; }
+    .manifesto-meta span:last-child { display: none; }
+    .manifesto-layout { grid-template-columns: 1fr; padding: 35px 0 55px; gap: 50px; }
+    .manifesto-perspective { padding: 12px; }
+    .manifesto-plate { min-height: 380px; }
+    .manifesto-orbit { font-size: 100px; top: -36px; }
+    .manifesto-footer { flex-direction: column; font-size: 9px; line-height: 1.6; }
+  }
+  @media (prefers-reduced-motion: reduce) { button { transition: none; } }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  const section = document.querySelector<HTMLElement>("#manifiesto");
+  if (section) {
+    const tabs = Array.from(section.querySelectorAll<HTMLButtonElement>('[role="tab"]'));
+    const panels = Array.from(section.querySelectorAll<HTMLElement>('[role="tabpanel"]'));
+    const select = (index: number) => {
+      tabs.forEach((tab, i) => { tab.setAttribute("aria-selected", String(i === index)); tab.tabIndex = i === index ? 0 : -1; panels[i].hidden = i !== index; });
+    };
+    tabs.forEach((tab, index) => {
+      tab.addEventListener("click", () => select(index));
+      tab.addEventListener("keydown", (event) => {
+        let next = index;
+        if (event.key === "ArrowRight") next = (index + 1) % tabs.length;
+        else if (event.key === "ArrowLeft") next = (index + tabs.length - 1) % tabs.length;
+        else if (event.key === "Home") next = 0;
+        else if (event.key === "End") next = tabs.length - 1;
+        else return;
+        event.preventDefault(); select(next); tabs[next].focus();
+      });
+    });
+    const media = gsap.matchMedia();
+    media.add("(prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine)", () => {
+      const plate = section.querySelector(".manifesto-plate");
+      const surface = section.querySelector<HTMLElement>(".manifesto-perspective");
+      if (!plate || !surface) return;
+      const controller = new AbortController();
+      const x = gsap.quickTo(plate, "rotationX", { duration: .6, ease: "power3.out" });
+      const y = gsap.quickTo(plate, "rotationY", { duration: .6, ease: "power3.out" });
+      surface.addEventListener("pointermove", (event) => {
+        if (event.pointerType === "touch") return;
+        const rect = surface.getBoundingClientRect();
+        x((.5 - (event.clientY - rect.top) / rect.height) * 9);
+        y(((event.clientX - rect.left) / rect.width - .5) * 9);
+      }, { signal: controller.signal });
+      const reset = () => { x(0); y(0); };
+      surface.addEventListener("pointerleave", reset, { signal: controller.signal });
+      window.addEventListener("blur", reset, { signal: controller.signal });
+      return () => controller.abort();
+    });
+  }
+</script>
