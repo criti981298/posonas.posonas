@@ -25,7 +25,7 @@ const imagenes: Record<string, { src: string; width: number; height: number }> =
       </div>
       <div class="manifesto-perspective">
         <div class="manifesto-plate">
-          <span class="manifesto-orbit" aria-hidden="true">✳</span>
+          <span class="manifesto-orbit" aria-hidden="true"></span>
           {ideas.map((idea, i) => <div class="manifesto-message" role="tabpanel" id={`texto-${idea.id}`} aria-labelledby={`idea-${idea.id}`} tabindex="0" hidden={i !== 0}>
             <div class="manifesto-photo" aria-hidden="true">
               <img src={imagenes[idea.id].src} alt="" width={imagenes[idea.id].width} height={imagenes[idea.id].height} loading="lazy" decoding="async" />
