@@ -1,27 +1,7 @@
 
 ---
 import EventCard from "./EventCard.astro";
-
-const eventos = [
-  {
-    titulo: "Encuentro comunitario",
-    categoria: "Convivencia",
-    fecha: "24 OCT 2026",
-    descripcion: "Un espacio de encuentro para compartir experiencias y crear nuevas conexiones."
-  },
-  {
-    titulo: "Noche de arte queer",
-    categoria: "Arte y cultura",
-    fecha: "31 OCT 2026",
-    descripcion: "Una celebración de la creatividad y las distintas expresiones artísticas."
-  },
-  {
-    titulo: "Círculo de conversación",
-    categoria: "Comunidad",
-    fecha: "07 NOV 2026",
-    descripcion: "Un espacio de diálogo respetuoso, escucha y participación comunitaria."
-  }
-];
+import { eventos } from "../data/eventos";
 ---
 
 <section id="eventos" class="bg-[#101019] px-6 py-24">
@@ -42,7 +22,10 @@ const eventos = [
       </p>
     </div>
 
-    <div id="eventos-grid" class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <div
+      id="eventos-grid"
+      class="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+    >
       {eventos.map((evento) => (
         <EventCard {...evento} />
       ))}
@@ -55,7 +38,6 @@ const eventos = [
   </div>
 </section>
 
-
 <script>
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -65,14 +47,9 @@ const eventos = [
   function iniciarAnimacionEventos() {
     const contenedor = document.querySelector("#eventos-grid");
 
-    if (!contenedor) {
-      console.warn("Posonas: no se encontró eventos-grid");
-      return;
-    }
+    if (!contenedor) return;
 
     const tarjetas = contenedor.querySelectorAll(".event-card");
-
-    console.log("Tarjetas de eventos encontradas:", tarjetas.length);
 
     if (tarjetas.length === 0) return;
 
@@ -96,10 +73,7 @@ const eventos = [
         once: true
       }
     });
-
-    ScrollTrigger.refresh();
   }
 
   iniciarAnimacionEventos();
 </script>
-

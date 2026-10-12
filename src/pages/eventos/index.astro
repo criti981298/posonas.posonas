@@ -1,0 +1,93 @@
+
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import EventCard from "../../components/EventCard.astro";
+import { eventos } from "../../data/eventos";
+---
+
+<MainLayout
+  title="Eventos | Posonas"
+  description="Explora los eventos y actividades de demostración de la comunidad Posonas."
+>
+  <main class="min-h-screen bg-[#101019] px-6 py-20">
+
+    <div class="mx-auto max-w-6xl">
+
+      <!-- ENCABEZADO -->
+
+      <header class="mb-14">
+
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 text-sm font-medium text-fuchsia-300 hover:text-fuchsia-200"
+        >
+          <span aria-hidden="true">←</span>
+          Volver al inicio
+        </a>
+
+        <div class="mt-12 max-w-3xl">
+
+          <span class="text-sm font-semibold tracking-[0.2em] text-fuchsia-300">
+            POSONAS · COMUNIDAD
+          </span>
+
+          <h1 class="mt-5 text-5xl font-extrabold text-white md:text-7xl">
+            Explora nuestros
+            <span class="text-violet-400">eventos</span>
+          </h1>
+
+          <p class="mt-6 text-lg leading-8 text-zinc-300">
+            Descubre espacios para conectar, compartir
+            experiencias y celebrar nuestra diversidad.
+          </p>
+
+        </div>
+
+      </header>
+
+      <!-- LISTADO DE EVENTOS -->
+
+      <section aria-labelledby="titulo-eventos">
+
+        <div class="mb-8 flex flex-wrap items-center justify-between gap-4">
+
+          <h2
+            id="titulo-eventos"
+            class="text-2xl font-bold text-white"
+          >
+            Todos los eventos
+          </h2>
+
+          <span
+            class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-300"
+          >
+            {eventos.length} eventos
+          </span>
+
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+
+          {eventos.map((evento) => (
+            <EventCard {...evento} />
+          ))}
+
+        </div>
+
+      </section>
+
+      <!-- AVISO -->
+
+      <aside
+        class="mt-14 rounded-2xl border border-violet-400/20 bg-violet-400/10 p-6"
+      >
+        <p class="text-sm leading-7 text-zinc-200">
+          Los eventos mostrados son demostraciones.
+          Las fechas, ubicaciones y actividades son ficticias.
+        </p>
+      </aside>
+
+    </div>
+
+  </main>
+</MainLayout>
