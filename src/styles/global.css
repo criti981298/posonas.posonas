@@ -92,3 +92,36 @@ select {
   font: inherit;
 }
 
+
+/* ==========================================
+   CAPA EDITORIAL INMERSIVA (escena 3D de fondo)
+   ========================================== */
+
+body { background: #0a0a12; padding-top: 80px; }
+
+/* El contenido flota sobre la escena 3D fija */
+header.navbar, main, footer { position: relative; z-index: 1; }
+.hero, #comunidad, #manifiesto { background: transparent !important; }
+#eventos, #recursos, .footer {
+  background: linear-gradient(to bottom, #0a0a1273, #0a0a12b3) !important;
+  backdrop-filter: blur(3px);
+}
+
+/* Navbar editorial flotante */
+.navbar {
+  position: fixed !important; top: 0; left: 0; right: 0; z-index: 50 !important;
+  background: linear-gradient(#0a0a12d9, transparent) !important;
+  border-bottom: 0 !important; backdrop-filter: blur(10px);
+}
+
+/* Titulares de revista */
+h1, h2 { text-wrap: balance; }
+h2 { letter-spacing: -0.05em; line-height: 0.98; }
+
+/* Grano de impresión sobre toda la página */
+body::after {
+  content: ""; position: fixed; inset: 0; z-index: 60; pointer-events: none; opacity: .07; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+@media (max-width: 768px) { body { padding-top: 112px; } }
