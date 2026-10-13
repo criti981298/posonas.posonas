@@ -125,3 +125,14 @@ body::after {
 }
 
 @media (max-width: 768px) { body { padding-top: 112px; } }
+
+/* Números gigantes de sección, al estilo revista */
+#comunidad, #manifiesto, #eventos, #recursos { position: relative; overflow: clip; }
+#comunidad::before, #manifiesto::before, #eventos::before, #recursos::before {
+  position: absolute; right: 2vw; top: 10px; z-index: 0; pointer-events: none;
+  font: 800 clamp(120px, 26vw, 420px)/1 var(--font-heading); letter-spacing: -.08em;
+  color: transparent; -webkit-text-stroke: 1px #ffffff1f;
+}
+#comunidad::before { content: "01"; } #manifiesto::before { content: "02"; }
+#eventos::before { content: "03"; } #recursos::before { content: "04"; }
+.event-card, .resource-card { backdrop-filter: blur(10px); }

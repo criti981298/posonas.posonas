@@ -6,6 +6,7 @@ import Hero from "../components/Hero.astro";
 import EventsSection from "../components/EventsSection.astro";
 import ResourcesSection from "../components/ResourcesSection.astro";
 import EditorialBackdrop from "../components/EditorialBackdrop.astro";
+import Marquee from "../components/Marquee.astro";
 import ManifestoSection from "../components/ManifestoSection.astro";
 
 const descripcion =
@@ -28,6 +29,7 @@ const descripcion =
          ========================================== -->
 
     <Hero />
+    <Marquee texto="Tu historia tiene un lugar aquí" />
 
 
     <!-- ==========================================
@@ -52,6 +54,7 @@ const descripcion =
     </section>
 
     <ManifestoSection />
+    <Marquee texto="Hay mil formas de ser tú" inverso />
 
 
     <!-- ==========================================

@@ -1,0 +1,51 @@
+---
+// Scroll suave, revelados 3D y tarjetas con inclinación (sensación de revista inmersiva).
+---
+
+<script>
+  import Lenis from "lenis";
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const mm = gsap.matchMedia();
+  mm.add("(prefers-reduced-motion: no-preference)", () => {
+    const lenis = new Lenis({ lerp: 0.09, anchors: true });
+    lenis.on("scroll", ScrollTrigger.update);
+    const tick = (t: number) => lenis.raf(t * 1000);
+    gsap.ticker.add(tick); gsap.ticker.lagSmoothing(0);
+
+    // Revelados con profundidad
+    gsap.utils.toArray<HTMLElement>(
+      "#manifiesto h2, #eventos h2, #recursos h2, .events-heading > *, #eventos article, #recursos article, .manifesto-meta, .manifesto-footer, .footer-principal"
+    ).forEach((el) => {
+      gsap.from(el, {
+        autoAlpha: 0, y: 80, rotationX: -14, transformPerspective: 900, transformOrigin: "50% 100%",
+        duration: 1.2, ease: "power3.out", clearProps: "transform,opacity,visibility",
+        scrollTrigger: { trigger: el, start: "top 90%", once: true },
+      });
+    });
+
+    // Parallax de profundidad en las ilustraciones de fondo
+    gsap.utils.toArray<HTMLElement>(".editorial-art").forEach((el) => {
+      gsap.fromTo(el, { yPercent: -6 }, { yPercent: 6, ease: "none", scrollTrigger: { trigger: el.parentElement, scrub: true } });
+    });
+
+    return () => { gsap.ticker.remove(tick); lenis.destroy(); };
+  });
+
+  mm.add("(prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine)", () => {
+    const ctl = new AbortController();
+    document.querySelectorAll<HTMLElement>(".event-card, .resource-card").forEach((card) => {
+      const rx = gsap.quickTo(card, "rotationX", { duration: 0.5, ease: "power3.out" });
+      const ry = gsap.quickTo(card, "rotationY", { duration: 0.5, ease: "power3.out" });
+      gsap.set(card, { transformPerspective: 800 });
+      card.addEventListener("pointermove", (e) => {
+        const r = card.getBoundingClientRect();
+        ry(((e.clientX - r.left) / r.width - 0.5) * 12); rx((0.5 - (e.clientY - r.top) / r.height) * 12);
+      }, { signal: ctl.signal });
+      card.addEventListener("pointerleave", () => { rx(0); ry(0); }, { signal: ctl.signal });
+    });
+    return () => ctl.abort();
+  });
+</script>

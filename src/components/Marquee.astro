@@ -1,0 +1,37 @@
+---
+interface Props { texto: string; inverso?: boolean }
+const { texto, inverso = false } = Astro.props;
+---
+
+<div class="marquee" aria-hidden="true" data-dir={inverso ? -1 : 1}>
+  <div class="marquee__track">
+    {Array.from({ length: 6 }).map((_, i) => <span class:list={{ hueca: i % 2 === 0 }}>{texto} ✳</span>)}
+  </div>
+</div>
+
+<style>
+  .marquee { overflow: hidden; padding: 28px 0; border-block: 1px solid #ffffff1f; position: relative; z-index: 1; }
+  .marquee__track { display: flex; width: max-content; will-change: transform; }
+  span {
+    padding-right: .6em; white-space: nowrap; text-transform: uppercase; font-family: var(--font-heading);
+    font-size: clamp(56px, 12vw, 190px); font-weight: 800; line-height: 1; letter-spacing: -.05em; color: #f6d4e8;
+  }
+  span.hueca { color: transparent; -webkit-text-stroke: 1.5px #f4b7d4cc; }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+  if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    document.querySelectorAll<HTMLElement>(".marquee").forEach((el) => {
+      const dir = Number(el.dataset.dir) || 1;
+      const track = el.querySelector<HTMLElement>(".marquee__track")!;
+      const tw = gsap.fromTo(track, { xPercent: dir > 0 ? 0 : -50 }, { xPercent: dir > 0 ? -50 : 0, duration: 40, ease: "none", repeat: -1 });
+      ScrollTrigger.create({ trigger: el, start: "top bottom", end: "bottom top", onUpdate: (self) => {
+        gsap.to(tw, { timeScale: 1 + Math.abs(self.getVelocity()) / 250, duration: 0.2, overwrite: true });
+        gsap.to(tw, { timeScale: 1, duration: 1.2, delay: 0.2 });
+      } });
+    });
+  }
+</script>
